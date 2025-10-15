@@ -1,16 +1,21 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    background: url('img/messi.png') no-repeat center center; 
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
+    padding: 0;
+    background: url('img/messi.png') no-repeat center center fixed; 
     min-height: 100vh;
+    min-height: -webkit-fill-available; /* Fix para Safari iOS */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-size: cover;
     overflow-x: hidden;
+}
+
+/* Fix para navegadores móviles (evita el espacio blanco) */
+html {
+    height: -webkit-fill-available;
 }
 
 /* -------------------------------------- */
@@ -22,12 +27,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .announcement-box {
@@ -36,10 +44,11 @@ body {
     border-radius: 10px;
     padding: 0;
     max-width: 400px;
-    width: 100%;
+    width: 90%;
     text-align: center;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     overflow: hidden;
+    margin: auto;
 }
 
 .announcement-title {
@@ -157,9 +166,8 @@ body {
 /* RESPONSIVE - TABLETS                   */
 /* -------------------------------------- */
 @media (max-width: 768px) {
-    body {
-        background-attachment: scroll; /* Mejor rendimiento en móviles */
-        background-position: center center;
+    .announcement-box {
+        width: 85%;
     }
 
     .announcement-title {
@@ -200,18 +208,14 @@ body {
 /* RESPONSIVE - MÓVILES                   */
 /* -------------------------------------- */
 @media (max-width: 480px) {
-    body {
-        background-position: center center;
-        min-height: -webkit-fill-available; /* Fix para iOS */
-    }
-
     #notification-container {
         top: 10px;
         padding: 0 10px;
     }
 
     .announcement-box {
-        max-width: 95%;
+        max-width: 90%;
+        width: 90%;
     }
 
     .announcement-title {
@@ -254,6 +258,10 @@ body {
 /* RESPONSIVE - MÓVILES PEQUEÑOS          */
 /* -------------------------------------- */
 @media (max-width: 360px) {
+    .announcement-box {
+        width: 92%;
+    }
+
     .announcement-title {
         font-size: 16px;
     }
@@ -285,16 +293,14 @@ body {
 /* LANDSCAPE (HORIZONTAL) EN MÓVILES      */
 /* -------------------------------------- */
 @media (max-height: 500px) and (orientation: landscape) {
-    body {
-        background-attachment: scroll;
-    }
-
     #announcement-overlay {
         padding: 10px;
+        overflow-y: auto;
     }
 
     .announcement-box {
         max-width: 500px;
+        margin: 10px auto;
     }
 
     .announcement-title {
