@@ -1,8 +1,8 @@
 const notificationContainer = document.getElementById('notification-container');
 
 // datos ejemplo
-const names = ["Juan M.", "Sofía P.", "Carlos G.", "Ana L.", "Miguel V.", "Elena R.", "Pedro S.", "Lucía C."];
-const games = ["Ruleta", "Tragamonedas", "Blackjack", "Póker", "Baccarat", "Video Slots"];
+const names = ["Antonela0587", "Laucharo1190", "Lujan9629", "Teo9616", "Bauti2527", "Adrian0223", "Lapulguita5008", "Tantin4444"];
+const games = ["Ruleta", "Sweet Bonanza", "Big Bass Bonanza", "Combinada deportiva", "Baccarat", "Ruleta"];
 
 // Variable para controlar si hay una notificación activa
 let isNotificationActive = false;
@@ -29,15 +29,15 @@ function showNotification() {
     const randomName = names[getRandomInt(0, names.length - 1)];
     const randomGame = games[getRandomInt(0, games.length - 1)];
     
-    // Monto entre $500.000 y $10.000.000
-    const randomAmount = getRandomInt(5, 100) * 100000; 
+    // Monto entre $250.000 y $4.000.000
+    const randomAmount = getRandomInt(250000, 4000000);
     const formattedAmount = formatCurrency(randomAmount);
 
     // 2. Crear el elemento de notificación (el cartel)
     const notification = document.createElement('div');
     notification.classList.add('notification');
     
-    // 3. Contenido del cartel: "Juan M. ganó $4.000.000 en Ruleta."
+    // 3. Contenido del cartel: "Antonela0587 ganó $1.250.000 en Ruleta."
     notification.innerHTML = `
         <div class="notification-title">¡GANANCIA EN VIVO!</div>
         <div class="notification-text">
