@@ -1,8 +1,8 @@
 const notificationContainer = document.getElementById('notification-container');
 
-// datos ejemplo
+// Datos de ejemplo con nombres más realistas
 const names = ["Antonela0587", "Laucharo1190", "Lujan9629", "Teo9616", "Bauti2527", "Adrian0223", "Lapulguita5008", "Tantin4444"];
-const games = ["Ruleta", "Sweet Bonanza", "Big Bass Bonanza", "Combinada deportiva", "Baccarat", "Ruleta"];
+const games = ["Ruleta", "Sweet Bonanza", "Big Bass Bonanza", "Combinada deportiva", "Blackjack", "Joker Flip"];
 
 // Variable para controlar si hay una notificación activa
 let isNotificationActive = false;
@@ -14,81 +14,97 @@ function getRandomInt(min, max) {
 
 // Función para formatear el número con puntos como separador de miles (formato de Argentina)
 function formatCurrency(amount) {
-    // Ejemplo: 4000000 -> $4.000.000
     return '$' + amount.toLocaleString('es-AR', { minimumFractionDigits: 0 });
 }
 
-// Función principal para crear, mostrar y programar la eliminación de una notificación
+// Función para generar montos más realistas con distribución ponderada
+function generateRealisticAmount() {
+    const random = Math.random();
+    
+    // 60% de probabilidad: $15.000 - $80.000 (ganancias pequeñas)
+    if (random < 0.6) {
+        return getRandomInt(15, 80) * 1000;
+    }
+    // 30% de probabilidad: $80.000 - $250.000 (ganancias medianas)
+    else if (random < 0.9) {
+        return getRandomInt(80, 250) * 1000;
+    }
+    // 10% de probabilidad: $250.000 - $800.000 (ganancias grandes - RARAS)
+    else {
+        return getRandomInt(250, 800) * 1000;
+    }
+}
+
 function showNotification() {
-    // Si ya hay una notificación activa, no crear otra
+    // No aparece otra si hay una activa
     if (isNotificationActive) return;
     
     isNotificationActive = true;
 
-    // 1. Generar datos aleatorios para el mensaje
+    // Datos aleatorios
     const randomName = names[getRandomInt(0, names.length - 1)];
     const randomGame = games[getRandomInt(0, games.length - 1)];
     
-    // Monto entre $250.000 y $4.000.000
-    const randomAmount = getRandomInt(250000, 4000000);
+    // Montos REALISTAS con distribución ponderada
+    const randomAmount = generateRealisticAmount();
     const formattedAmount = formatCurrency(randomAmount);
 
-    // 2. Crear el elemento de notificación (el cartel)
+    // Crear el cartel con efecto de pulso
     const notification = document.createElement('div');
     notification.classList.add('notification');
     
-    // 3. Contenido del cartel: "Antonela0587 ganó $1.250.000 en Ruleta."
+    // Contenido del cartel con iconos y mejor jerarquía
     notification.innerHTML = `
-        <div class="notification-title">¡GANANCIA EN VIVO!</div>
-        <div class="notification-text">
-            <span style="color: #FFF;">${randomName}</span> ganó
-            <span class="notification-amount">${formattedAmount}</span> en
-            <span style="color: #FFF;">${randomGame}</span>.
+        <div class="notification-content">
+            <div class="notification-title">¡GANANCIA EN VIVO!</div>
+            <div class="notification-text">
+                <span class="notification-name">${randomName}</span> ganó
+                <span class="notification-amount">${formattedAmount}</span> en
+                <span class="notification-game">${randomGame}</span>
+            </div>
         </div>
     `;
 
-    // 4. Agregar al contenedor y mostrar con animación
+    // Agregar al contenedor
     notificationContainer.appendChild(notification);
     
-    // Pequeño delay de 10ms para activar la transición CSS (slide-in)
+    // Activar animación de entrada con delay
     setTimeout(() => {
         notification.classList.add('show');
     }, 10); 
     
-    // 5. Ocultar y remover la notificación después de 5 segundos
-    const displayTime = 5000; // 5 segundos
+    // Tiempo de visualización
+    const displayTime = 5000;
     
     setTimeout(() => {
-        // Iniciar la transición de salida (slide-out)
+        // Animación de salida
         notification.classList.remove('show');
         
-        // Remover el elemento del DOM después de que la transición termine (0.5s)
+        // Remover del DOM
         setTimeout(() => {
             notification.remove();
-            isNotificationActive = false; // Liberar para la siguiente notificación
+            isNotificationActive = false;
         }, 500); 
 
     }, displayTime);
 }
 
-// 6. Configurar el ciclo de notificaciones con intervalos irregulares
+// Configurar el ciclo de notificaciones
 function startLiveFeed() {
-    // Función recursiva para crear un flujo de notificaciones irregular
     function scheduleNextNotification() {
-        // Generar una demora aleatoria entre 2 y 6 segundos
-        const minDelay = 2000; 
-        const maxDelay = 6000; 
+        // Intervalo más amplio: entre 3 y 8 segundos (más natural)
+        const minDelay = 3000; 
+        const maxDelay = 8000; 
         const randomDelay = getRandomInt(minDelay, maxDelay);
         
         setTimeout(() => {
             showNotification();
-            scheduleNextNotification(); // Llamarse a sí misma para programar la siguiente
+            scheduleNextNotification();
         }, randomDelay);
     }
 
-    // Iniciar el ciclo
     scheduleNextNotification();
 }
 
-// Iniciar todo cuando la página carga completamente
+// Iniciar cuando carga la página
 document.addEventListener('DOMContentLoaded', startLiveFeed);
