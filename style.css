@@ -2,9 +2,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('img/messi.png') no-repeat center center fixed; 
+    background: url('img/messi.png') no-repeat center top fixed; 
     min-height: 100vh;
-    min-height: -webkit-fill-available; /* Fix para Safari iOS */
+    min-height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,13 +13,12 @@ body {
     overflow-x: hidden;
 }
 
-/* Fix para navegadores móviles (evita el espacio blanco) */
 html {
     height: -webkit-fill-available;
 }
 
 /* -------------------------------------- */
-/* ANUNCIO DE BIENVENIDA (OVERLAY)        */
+/* ANUNCIO DE BIENVENIDA                  */
 /* -------------------------------------- */
 #announcement-overlay {
     position: fixed;
@@ -31,27 +30,50 @@ html {
     height: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(3px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     padding: 20px;
     box-sizing: border-box;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .announcement-box {
     background: linear-gradient(180deg, #3d2414 0%, #1a0f08 100%);
     border: 3px solid #d4af37;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 0;
-    max-width: 400px;
+    max-width: 420px;
     width: calc(100% - 40px);
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.3);
+    overflow: visible;
     margin: 0 auto;
     position: relative;
+    animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .announcement-title {
@@ -59,23 +81,29 @@ html {
     color: #1a0f08;
     font-size: 24px;
     font-weight: bold;
-    padding: 15px;
+    padding: 18px;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .announcement-text {
     color: #ffffff;
-    font-size: 16px;
-    padding: 25px 30px;
+    font-size: 17px;
+    padding: 30px 35px;
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
 }
 
 .announcement-text strong {
     color: #f4c430;
     font-weight: bold;
+    text-shadow: 0 0 10px rgba(244, 196, 48, 0.3);
 }
 
 .announcement-button {
@@ -83,23 +111,106 @@ html {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: #d32f2f;
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
     color: white;
-    padding: 15px 30px;
-    margin: 0 30px 30px 30px;
-    border-radius: 5px;
+    padding: 16px 40px;
+    margin: 0 30px 0 30px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
-    transition: background 0.3s;
+    font-size: 17px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.announcement-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.announcement-button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .announcement-button:hover {
-    background: #b71c1c;
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.6);
+}
+
+.announcement-button:active {
+    transform: scale(1.02);
 }
 
 /* -------------------------------------- */
-/* CONTENEDOR DE LAS NOTIFICACIONES       */
+/* BADGE 24/7 VERDE                       */
+/* -------------------------------------- */
+.badge-247-container {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0 20px 0;
+}
+
+.badge-247 {
+    display: inline-block;
+    background: linear-gradient(135deg, #00C853 0%, #00E676 100%);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 13px;
+    box-shadow: 0 4px 15px rgba(0, 200, 83, 0.5);
+    animation: badgePulse 2s infinite;
+    letter-spacing: 0.5px;
+}
+
+.badge-247::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: badgeBlink 1.5s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 200, 83, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 25px rgba(0, 200, 83, 0.7);
+    }
+}
+
+@keyframes badgeBlink {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+}
+
+/* -------------------------------------- */
+/* NOTIFICACIONES LIVE                    */
 /* -------------------------------------- */
 #notification-container {
     position: fixed;
@@ -110,59 +221,109 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
-    max-width: 400px;
-    padding: 0 10px;
+    max-width: 420px;
+    padding: 0 15px;
     box-sizing: border-box;
 }
 
-/* -------------------------------------- */
-/* ESTILO DEL CARTEL (Pop-up)             */
-/* -------------------------------------- */
 .notification {
-    /* Fondo y Borde (Negro y Dorado/Amarillo) - SIN TRANSPARENCIA */
-    background-color: rgb(30, 30, 30);
+    background: linear-gradient(135deg, rgb(20, 20, 20) 0%, rgb(40, 40, 40) 100%);
     color: #FFD700;
     border-left: 5px solid #FFD700;
-    
-    /* Estructura y Sombra */
-    padding: 15px 20px;
-    border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.2);
     width: 100%;
-    max-width: 320px;
+    max-width: 380px;
     box-sizing: border-box;
-    
-    /* Animación (Inicialmente invisible y desde arriba) */
+    display: flex;
+    align-items: center;
+    gap: 15px;
     opacity: 0;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform: translateY(-50px) scale(0.9);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Clase que activa la animación de entrada */
+.notification::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 215, 0, 0.1),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.notification.show::after {
+    left: 100%;
+}
+
 .notification.show {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* Estilos de texto dentro del cartel */
+.notification-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    animation: pulse 2s infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.notification-content {
+    flex: 1;
+}
+
 .notification-title {
     font-weight: bold;
-    color: #FFF;
-    margin-bottom: 5px;
-    font-size: 1.1em;
+    color: #FFD700;
+    margin-bottom: 6px;
+    font-size: 0.95em;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
 .notification-text {
-    font-size: 0.95em;
+    font-size: 0.9em;
+    color: #e0e0e0;
+    line-height: 1.4;
+}
+
+.notification-name {
+    color: #FFF;
+    font-weight: 600;
 }
 
 .notification-amount {
     font-weight: bold;
     color: #FFD700;
-    font-size: 1.1em;
+    font-size: 1.15em;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.notification-game {
+    color: #FFF;
+    font-weight: 500;
 }
 
 /* -------------------------------------- */
@@ -176,35 +337,36 @@ html {
 
     .announcement-title {
         font-size: 20px;
-        padding: 12px;
+        padding: 14px;
     }
 
     .announcement-text {
         font-size: 15px;
-        padding: 20px 25px;
+        padding: 22px 25px;
     }
 
     .announcement-button {
         font-size: 15px;
-        padding: 12px 25px;
-        margin: 0 25px 25px 25px;
+        padding: 14px 30px;
+        margin: 0 25px 0 25px;
+    }
+
+    .badge-247-container {
+        padding: 12px 0 18px 0;
+    }
+
+    .badge-247 {
+        padding: 9px 15px;
+        font-size: 12px;
     }
 
     .notification {
         max-width: 100%;
-        padding: 12px 15px;
+        padding: 14px 16px;
     }
 
-    .notification-title {
-        font-size: 1em;
-    }
-
-    .notification-text {
-        font-size: 0.9em;
-    }
-
-    .notification-amount {
-        font-size: 1em;
+    .notification-icon {
+        font-size: 28px;
     }
 }
 
@@ -217,8 +379,8 @@ html {
     }
 
     #notification-container {
-        top: 10px;
-        padding: 0 10px;
+        top: 12px;
+        padding: 0 12px;
     }
 
     .announcement-box {
@@ -228,37 +390,51 @@ html {
 
     .announcement-title {
         font-size: 18px;
-        padding: 10px;
-        letter-spacing: 0.5px;
+        padding: 12px;
+        letter-spacing: 1px;
     }
 
     .announcement-text {
         font-size: 14px;
-        padding: 18px 20px;
+        padding: 20px 20px;
     }
 
     .announcement-button {
         font-size: 14px;
-        padding: 12px 20px;
-        margin: 0 20px 20px 20px;
-        gap: 8px;
+        padding: 13px 25px;
+        margin: 0 20px 0 20px;
+    }
+
+    .badge-247-container {
+        padding: 10px 0 15px 0;
+    }
+
+    .badge-247 {
+        padding: 8px 14px;
+        font-size: 11px;
+    }
+
+    .badge-247::before {
+        width: 6px;
+        height: 6px;
+        margin-right: 6px;
     }
 
     .notification {
-        padding: 10px 12px;
+        padding: 12px 14px;
+        gap: 12px;
+    }
+
+    .notification-icon {
+        font-size: 26px;
     }
 
     .notification-title {
-        font-size: 0.9em;
-        margin-bottom: 3px;
+        font-size: 0.85em;
     }
 
     .notification-text {
         font-size: 0.85em;
-    }
-
-    .notification-amount {
-        font-size: 0.95em;
     }
 }
 
@@ -267,38 +443,31 @@ html {
 /* -------------------------------------- */
 @media (max-width: 360px) {
     .announcement-box {
-        width: 92%;
+        width: calc(100% - 15px);
     }
 
     .announcement-title {
         font-size: 16px;
+        padding: 10px;
     }
 
     .announcement-text {
         font-size: 13px;
-        padding: 15px 15px;
+        padding: 16px 16px;
     }
 
     .announcement-button {
         font-size: 13px;
-        padding: 10px 18px;
+        padding: 11px 20px;
     }
 
-    .notification-title {
-        font-size: 0.85em;
-    }
-
-    .notification-text {
-        font-size: 0.8em;
-    }
-
-    .notification-amount {
-        font-size: 0.9em;
+    .notification-icon {
+        font-size: 24px;
     }
 }
 
 /* -------------------------------------- */
-/* LANDSCAPE (HORIZONTAL) EN MÓVILES      */
+/* LANDSCAPE EN MÓVILES                   */
 /* -------------------------------------- */
 @media (max-height: 500px) and (orientation: landscape) {
     #announcement-overlay {
@@ -313,25 +482,33 @@ html {
 
     .announcement-title {
         font-size: 16px;
-        padding: 8px;
+        padding: 10px;
     }
 
     .announcement-text {
         font-size: 13px;
-        padding: 12px 20px;
+        padding: 14px 20px;
     }
 
     .announcement-button {
         font-size: 13px;
-        padding: 8px 20px;
-        margin: 0 20px 15px 20px;
+        padding: 10px 20px;
+        margin: 0 20px 0 20px;
+    }
+
+    .badge-247-container {
+        padding: 8px 0 12px 0;
     }
 
     #notification-container {
-        top: 5px;
+        top: 8px;
     }
 
     .notification {
-        padding: 8px 12px;
+        padding: 10px 12px;
+    }
+
+    .notification-icon {
+        font-size: 22px;
     }
 }
