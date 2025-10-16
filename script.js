@@ -108,3 +108,12 @@ function startLiveFeed() {
 
 // Iniciar cuando carga la página
 document.addEventListener('DOMContentLoaded', startLiveFeed);
+
+document.getElementById('badge247Link').addEventListener('click', function(e) {
+    e.preventDefault();
+    fbq('track', 'Contact');
+    
+    setTimeout(function() {
+        window.location.href = 'https://wa.me/5493585611428?text=Hola%20quiero%20acceso%20a%20Juga%20Premium';
+    }, 100);
+});
