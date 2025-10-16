@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>LANDING PAGE</title>
     <link rel="icon" type="image/x-icon" href="img/logo.jpg">
     <link rel="stylesheet" href="style.css">
-
+    
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -23,29 +23,35 @@
     src="https://www.facebook.com/tr?id=1877265443145745&ev=PageView&noscript=1" />
     </noscript>
 </head>
-  
 <body>
-    <!-- Contenedor para las notificaciones LIVE (ESTO FALTABA!) -->
+    <!-- Contenedor para las notificaciones LIVE -->
     <div id="notification-container"></div>
-
+    
     <div id="announcement-overlay">
-        <div class="announcement-box">
-            <p class="announcement-title">50% en tu primer carga</p>
-            <p class="announcement-text">Regístrate gratis  y recibí tu <strong>BONO DE BIENVENIDA.</strong></p>
-            <a href="#" id="botonWhatsapp" class="announcement-button">Ir a Whatsapp</a>
+        <div class="announcement-wrapper">
+            <div class="announcement-box">
+                <p class="announcement-title">50% en tu primer carga</p>
+                <p class="announcement-text">Regístrate gratis y recibí tu <strong>BONO DE BIENVENIDA.</strong></p>
+                <a href="#" id="botonWhatsapp" class="announcement-button">QUIERO MI BONO</a>
+            </div>
+            
+            <!-- ⭐ BADGE 24/7 FUERA DEL CUADRADO ⭐ -->
+            <div class="badge-247-container">
+                <div class="badge-247">24/7 En Línea</div>
+            </div>
         </div>
     </div>
-
+    
     <script>
     document.getElementById('botonWhatsapp').addEventListener('click', function() {
-      fbq('track', 'Contact');
-      
-      setTimeout(function() {
-        window.location.href = 'https://wa.me/5493585611428?text=Hola%20quiero%20acceso%20a%20Juga%20Premium';
-      }, 100);
+        fbq('track', 'Contact');
+        
+        setTimeout(function() {
+            window.location.href = 'https://wa.me/5493585611428?text=Hola%20quiero%20acceso%20a%20Juga%20Premium';
+        }, 100);
     });
     </script>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
