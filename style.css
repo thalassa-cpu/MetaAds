@@ -11,10 +11,16 @@ body {
     flex-direction: column;
     background-size: cover;
     overflow-x: hidden;
+    position: fixed; /* AGREGAR */
+    width: 100%; /* AGREGAR */
+    overscroll-behavior: none; /* AGREGAR */
 }
 
 html {
     height: -webkit-fill-available;
+    overscroll-behavior: none; /* AGREGAR */
+    position: fixed; /* AGREGAR */
+    width: 100%; /* AGREGAR */
 }
 
 * {
@@ -45,6 +51,7 @@ html {
     align-items: center;
     z-index: 2000;
     padding: 20px;
+    overscroll-behavior: none; 
     box-sizing: border-box;
     animation: fadeIn 0.4s ease-out;
 }
@@ -66,6 +73,7 @@ html {
     max-width: 420px;
     width: calc(100% - 40px);
     text-align: center;
+    max-width: 480px;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.3);
     overflow: visible;
     margin: 0 auto;
@@ -88,6 +96,8 @@ html {
     background: linear-gradient(90deg, #f4c430 0%, #ffeb3b 50%, #f4c430 100%);
     color: #1a0f08;
     font-size: 24px;
+    padding: 18px 30px; /* CAMBIAR: agregar padding horizontal de 30px */
+    white-space: nowrap; /* AGREGAR: evita que se rompa en dos líneas */
     font-weight: bold;
     padding: 18px;
     margin: 0;
@@ -387,6 +397,8 @@ html {
 @media (max-width: 480px) {
     #announcement-overlay {
         padding: 15px;
+    overscroll-behavior: none; /* AGREGAR */
+    position: fixed; /* Ya lo tienes, verificar que esté */
     }
 
     #notification-container {
@@ -484,6 +496,8 @@ html {
     #announcement-overlay {
         padding: 10px;
         overflow-y: auto;
+    overscroll-behavior: none; /* AGREGAR */
+    position: fixed; /* Ya lo tienes, verificar que esté */
     }
 
     .announcement-box {
@@ -523,3 +537,43 @@ html {
         font-size: 22px;
     }
 }
+
+
+@media (max-width: 480px) {
+    /* ... tus estilos existentes ... */
+    
+    .footer-text {
+        font-size: 10px;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    /* ... tus estilos existentes ... */
+    
+    .footer-text {
+        font-size: 9px;
+        padding: 8px 10px;
+    }
+}
+
+
+
+/* -------------------------------------- */
+/* FOOTER                                 */
+/* -------------------------------------- */
+.footer-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: transparent; /* CAMBIAR: de rgba(0, 0, 0, 0.7) a transparent */
+    color: rgba(255, 255, 255, 0.7); /* CAMBIAR: más visible */
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 12px;
+    z-index: 1;
+    backdrop-filter: none; /* CAMBIAR: quitar el blur */
+    border-top: none; /* CAMBIAR: quitar el borde */
+}
+
