@@ -11,16 +11,41 @@ body {
     flex-direction: column;
     background-size: cover;
     overflow-x: hidden;
-    position: fixed; /* AGREGAR */
-    width: 100%; /* AGREGAR */
-    overscroll-behavior: none; /* AGREGAR */
+    position: fixed;
+    width: 100%;
+    overscroll-behavior: none;
+}
+
+/* Capa de difuminado sobre el background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+/* Capa semi-transparente para mejorar legibilidad */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
 }
 
 html {
     height: -webkit-fill-available;
-    overscroll-behavior: none; /* AGREGAR */
-    position: fixed; /* AGREGAR */
-    width: 100%; /* AGREGAR */
+    overscroll-behavior: none;
+    position: fixed;
+    width: 100%;
 }
 
 * {
@@ -31,204 +56,129 @@ html {
     -webkit-touch-callout: none;
 }
 
+
+/* Contenedor del logo debe ser relativo */
+#logo-container {
+    position: relative;
+}
+
+/* Botón posicionado justo debajo del logo */
+.boton-box {
+    position: absolute;
+    left: 50%;               /* centrado horizontal */
+    transform: translateX(-50%);
+    bottom: 10px;            /* ajusta para acercar más al logo */
+}
+
+/* Botón estilo */
+.announcement-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #35ad10;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+/* Hover */
+.announcement-button:hover {
+    transform: translateY(-3px);
+}
+
+
 /* -------------------------------------- */
-/* ANUNCIO DE BIENVENIDA                  */
+/* DESTELLOS DETRÁS DE LA IMAGEN         */
 /* -------------------------------------- */
-#announcement-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(3px);
+.sparkle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 215, 0, 0.8) 30%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: sparkleAnimation 3s infinite ease-in-out;
+}
+
+.sparkle-1 {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    width: 20px;
+    height: 20px;
+    top: 25%;
+    right: 10%;
+    animation-delay: 0.5s;
+}
+
+.sparkle-3 {
+    width: 12px;
+    height: 12px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.sparkle-4 {
+    width: 18px;
+    height: 18px;
+    bottom: 15%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.sparkle-5 {
+    width: 14px;
+    height: 14px;
+    top: 50%;
+    left: 5%;
+    animation-delay: 2s;
+}
+
+.sparkle-6 {
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    right: 5%;
+    animation-delay: 2.5s;
+}
+
+@keyframes sparkleAnimation {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+/* -------------------------------------- */
+/* CONTENEDOR DEL LOGO                    */
+/* -------------------------------------- */
+.logo-image-container {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
-    padding: 20px;
-    overscroll-behavior: none; 
-    box-sizing: border-box;
-    animation: fadeIn 0.4s ease-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.announcement-box {
-    background: linear-gradient(180deg, #3d2414 0%, #1a0f08 100%);
-    border: 3px solid #d4af37;
-    border-radius: 12px;
-    padding: 0;
-    max-width: 420px;
-    width: calc(100% - 40px);
-    text-align: center;
-    max-width: 480px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.3);
-    overflow: visible;
-    margin: 0 auto;
-    position: relative;
-    animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-@keyframes scaleIn {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.announcement-title {
-    background: linear-gradient(90deg, #f4c430 0%, #ffeb3b 50%, #f4c430 100%);
-    color: #1a0f08;
-    font-size: 24px;
-    padding: 18px 30px; /* CAMBIAR: agregar padding horizontal de 30px */
-    white-space: nowrap; /* AGREGAR: evita que se rompa en dos líneas */
-    font-weight: bold;
-    padding: 18px;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+.logo-image {
+    max-width: 100%;
+    height: auto;
     position: relative;
     z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
 }
 
-.announcement-text {
-    color: #ffffff;
-    font-size: 17px;
-    padding: 30px 35px;
-    margin: 0;
-    line-height: 1.7;
-    position: relative;
-    z-index: 1;
-}
-
-.announcement-text strong {
-    color: #f4c430;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(244, 196, 48, 0.3);
-}
-
-.announcement-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-    color: white;
-    padding: 16px 40px;
-    margin: 0 30px 25px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 17px;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.announcement-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.announcement-button:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.announcement-button:hover {
-    transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.6);
-}
-
-.announcement-button:active {
-    transform: scale(1.02);
-}
-
-/* -------------------------------------- */
-/* BADGE 24/7 VERDE                       */
-/* -------------------------------------- */
-.badge-247-container {
-    width: 100%;
-    text-align: center;
-    padding: 15px 0 20px 0;
-    text-decoration: none; /* AGREGAR */
-    display: block; /* AGREGAR */
-    margin-top: 20px; 
-}
-
-.badge-247 {
-    display: inline-block;
-    background: linear-gradient(135deg, #00C853 0%, #00E676 100%);
-    color: white;
-    padding: 10px 18px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 13px;
-    box-shadow: 0 4px 15px rgba(0, 200, 83, 0.5);
-    animation: badgePulse 2s infinite;
-    letter-spacing: 0.5px;
-}
-
-.badge-247::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #fff;
-    border-radius: 50%;
-    margin-right: 8px;
-    animation: badgeBlink 1.5s infinite;
-}
-
-@keyframes badgePulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 4px 15px rgba(0, 200, 83, 0.5);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 6px 25px rgba(0, 200, 83, 0.7);
-    }
-}
-
-@keyframes badgeBlink {
-    0%, 100% { 
-        opacity: 1; 
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 0.4;
-        transform: scale(0.9);
-    }
-}
 
 /* -------------------------------------- */
 /* NOTIFICACIONES LIVE                    */
@@ -348,38 +298,31 @@ html {
 }
 
 /* -------------------------------------- */
+/* FOOTER                                 */
+/* -------------------------------------- */
+.footer-text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 12px;
+    z-index: 1;
+    backdrop-filter: none;
+    border-top: none;
+}
+
+/* -------------------------------------- */
 /* RESPONSIVE - TABLETS                   */
 /* -------------------------------------- */
 @media (max-width: 768px) {
-    .announcement-box {
-        width: calc(100% - 30px);
-        max-width: 380px;
-    }
+   
 
-    .announcement-title {
-        font-size: 20px;
-        padding: 14px;
-    }
 
-    .announcement-text {
-        font-size: 15px;
-        padding: 22px 25px;
-    }
-
-    .announcement-button {
-        font-size: 15px;
-        padding: 14px 30px;
-        margin: 0 25px 0 25px;
-    }
-
-    .badge-247-container {
-        padding: 12px 0 18px 0;
-    }
-
-    .badge-247 {
-        padding: 9px 15px;
-        font-size: 12px;
-    }
 
     .notification {
         max-width: 100%;
@@ -389,59 +332,23 @@ html {
     .notification-icon {
         font-size: 28px;
     }
+
+    .announcement-button {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
 }
 
 /* -------------------------------------- */
 /* RESPONSIVE - MÓVILES                   */
 /* -------------------------------------- */
 @media (max-width: 480px) {
-    #announcement-overlay {
-        padding: 15px;
-    overscroll-behavior: none; /* AGREGAR */
-    position: fixed; /* Ya lo tienes, verificar que esté */
-    }
-
     #notification-container {
         top: 12px;
         padding: 0 12px;
     }
 
-    .announcement-box {
-        max-width: 100%;
-        width: calc(100% - 20px);
-    }
 
-    .announcement-title {
-        font-size: 18px;
-        padding: 12px;
-        letter-spacing: 1px;
-    }
-
-    .announcement-text {
-        font-size: 14px;
-        padding: 20px 20px;
-    }
-
-    .announcement-button {
-        font-size: 14px;
-        padding: 13px 25px;
-        margin: 0 20px 0 20px;
-    }
-
-    .badge-247-container {
-        padding: 10px 0 15px 0;
-    }
-
-    .badge-247 {
-        padding: 8px 14px;
-        font-size: 11px;
-    }
-
-    .badge-247::before {
-        width: 6px;
-        height: 6px;
-        margin-right: 6px;
-    }
 
     .notification {
         padding: 12px 14px;
@@ -459,33 +366,29 @@ html {
     .notification-text {
         font-size: 0.85em;
     }
+
+    .footer-text {
+        font-size: 10px;
+        padding: 10px 15px;
+    }
+
+    .announcement-button {
+        padding: 10px 25px;
+        font-size: 13px;
+    }
 }
 
 /* -------------------------------------- */
 /* RESPONSIVE - MÓVILES PEQUEÑOS          */
 /* -------------------------------------- */
 @media (max-width: 360px) {
-    .announcement-box {
-        width: calc(100% - 15px);
-    }
-
-    .announcement-title {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .announcement-text {
-        font-size: 13px;
-        padding: 16px 16px;
-    }
-
-    .announcement-button {
-        font-size: 13px;
-        padding: 11px 20px;
-    }
-
     .notification-icon {
         font-size: 24px;
+    }
+
+    .footer-text {
+        font-size: 9px;
+        padding: 8px 10px;
     }
 }
 
@@ -493,37 +396,7 @@ html {
 /* LANDSCAPE EN MÓVILES                   */
 /* -------------------------------------- */
 @media (max-height: 500px) and (orientation: landscape) {
-    #announcement-overlay {
-        padding: 10px;
-        overflow-y: auto;
-    overscroll-behavior: none; /* AGREGAR */
-    position: fixed; /* Ya lo tienes, verificar que esté */
-    }
-
-    .announcement-box {
-        max-width: 500px;
-        margin: 10px auto;
-    }
-
-    .announcement-title {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .announcement-text {
-        font-size: 13px;
-        padding: 14px 20px;
-    }
-
-    .announcement-button {
-        font-size: 13px;
-        padding: 10px 20px;
-        margin: 0 20px 0 20px;
-    }
-
-    .badge-247-container {
-        padding: 8px 0 12px 0;
-    }
+    
 
     #notification-container {
         top: 8px;
@@ -536,43 +409,4 @@ html {
     .notification-icon {
         font-size: 22px;
     }
-}
-
-
-@media (max-width: 480px) {
-    /* ... tus estilos existentes ... */
-    
-    .footer-text {
-        font-size: 10px;
-        padding: 10px 15px;
-    }
-}
-
-@media (max-width: 360px) {
-    /* ... tus estilos existentes ... */
-    
-    .footer-text {
-        font-size: 9px;
-        padding: 8px 10px;
-    }
-}
-
-
-
-/* -------------------------------------- */
-/* FOOTER                                 */
-/* -------------------------------------- */
-.footer-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: transparent; /* CAMBIAR: de rgba(0, 0, 0, 0.7) a transparent */
-    color: rgba(255, 255, 255, 0.7); /* CAMBIAR: más visible */
-    text-align: center;
-    padding: 12px 20px;
-    font-size: 12px;
-    z-index: 1;
-    backdrop-filter: none; /* CAMBIAR: quitar el blur */
-    border-top: none; /* CAMBIAR: quitar el borde */
 }
