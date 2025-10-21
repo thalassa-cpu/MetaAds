@@ -27,26 +27,56 @@
     <!-- Contenedor para las notificaciones LIVE -->
     <div id="notification-container"></div>
     
-    <div id="announcement-overlay">
-        <div class="announcement-wrapper">
-            <div class="announcement-box">
-                <p class="announcement-title">50% en tu primer carga</p>
-                <p class="announcement-text">Regístrate gratis y recibí tu <strong>BONO DE BIENVENIDA.</strong></p>
-              
-            <a href="#" id="botonWhatsapp" class="announcement-button">QUIERO MI BONO</a>
+    <!-- LOGO CON IMAGEN -->
+    <div id="logo-container">
+        <div class="logo-wrapper">
+            <!-- Rayos de luz de fondo (opcional) -->
+            <div class="light-rays">
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
             </div>
-
-                <!-- ⭐ BADGE 24/7 FUERA DEL CONTENEDOR ⭐ -->
-                <a href="#" id="badge247Link" class="badge-247-container">
-                    <div class="badge-247">24/7 En Línea</div>
-                </a>
+            
+            <!-- Resplandor de fondo -->
+            <div class="glow-backdrop"></div>
+            
+            <!-- Contenedor del logo con destellos -->
+            <div class="logo-image-container">
+                <!-- Destellos detrás de la imagen -->
+                <div class="sparkle sparkle-1"></div>
+                <div class="sparkle sparkle-2"></div>
+                <div class="sparkle sparkle-3"></div>
+                <div class="sparkle sparkle-4"></div>
+                <div class="sparkle sparkle-5"></div>
+                <div class="sparkle sparkle-6"></div>
                 
-                <footer class="footer-text">
-             © 2025 el juego es solo +18. Operá con responsabilidad.
-            </footer>
-                        </div>
-                    </div>
-                    
+                <!-- Partículas luminosas orbitando -->
+                <div class="light-particle"></div>
+                <div class="light-particle"></div>
+                <div class="light-particle"></div>
+                <div class="light-particle"></div>
+                
+                <!-- AQUÍ VA TU IMAGEN DEL LOGO -->
+                <img src="img/25.png" alt="Bono del 25%" class="logo-image">
+            </div>
+            
+            <div class="cta-container">
+    <div class="boton-box">
+        <a href="#" id="botonWhatsapp" class="announcement-button">
+            <span class="button-dot"></span>
+            QUIERO MI RECOMPENSA
+        </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    <footer class="footer-text">
+        © 2025 el juego es solo +18. Operá con responsabilidad.
+    </footer>
+    
     <script>
     document.getElementById('botonWhatsapp').addEventListener('click', function() {
         fbq('track', 'Contact');
@@ -56,8 +86,6 @@
         }, 100);
     });
     </script>
-
-    
 
     <script src="script.js"></script>
 </body>
