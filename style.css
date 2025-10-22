@@ -73,8 +73,10 @@ html {
 /* Botón estilo */
 .announcement-button {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #35ad10;
+    padding: 16px 30px; /* Aún más ancho */
+    min-width: 250px; /* Botón más estirado */
+    background-color: #7a04db;
+    text-align: center;
     color: #fff;
     font-size: 17px;
     font-weight: bold;
@@ -172,10 +174,12 @@ html {
 }
 
 .logo-image {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     position: relative;
     z-index: 1;
+    width: 400px;  /* Tamaño fijo en píxeles */
+    height: auto;
     filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
 }
 
@@ -201,8 +205,8 @@ html {
 
 .notification {
     background: linear-gradient(135deg, rgb(20, 20, 20) 0%, rgb(40, 40, 40) 100%);
-    color: #FFD700;
-    border-left: 5px solid #FFD700;
+    color: #7a04db;
+    border-left: 5px solid #7a04db;
     border-radius: 8px;
     padding: 16px 20px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.2);
@@ -266,7 +270,7 @@ html {
 
 .notification-title {
     font-weight: bold;
-    color: #FFD700;
+    color: #7a04db;
     margin-bottom: 6px;
     font-size: 0.95em;
     text-transform: uppercase;
@@ -287,9 +291,9 @@ html {
 
 .notification-amount {
     font-weight: bold;
-    color: #FFD700;
+    color: #7a04db;
     font-size: 1.15em;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    text-shadow: 0 0 8px rgba(37, 20, 112, 0.4);
 }
 
 .notification-game {
@@ -410,3 +414,4 @@ html {
         font-size: 22px;
     }
 }
+
