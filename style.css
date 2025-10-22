@@ -2,21 +2,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('img/messi.png') no-repeat center top fixed; 
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background: url('img/messi.png') no-repeat center center fixed; 
     background-size: cover;
+    min-height: 100vh;
+    position: relative;
     overflow-x: hidden;
-    position: fixed;
-    width: 100%;
-    overscroll-behavior: none;
 }
 
-/* Capa de difuminado sobre el background */
+/* Capa de difuminado */
 body::before {
     content: '';
     position: fixed;
@@ -26,10 +19,10 @@ body::before {
     height: 100%;
     background: inherit;
     filter: blur(8px);
-    z-index: -1;
+    z-index: -2;
 }
 
-/* Capa semi-transparente para mejorar legibilidad */
+/* Capa oscura */
 body::after {
     content: '';
     position: fixed;
@@ -42,64 +35,73 @@ body::after {
 }
 
 html {
-    height: -webkit-fill-available;
-    overscroll-behavior: none;
-    position: fixed;
-    width: 100%;
+    height: 100%;
 }
 
 * {
     user-select: none;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-touch-callout: none;
+    box-sizing: border-box;
 }
-
-
-/* Contenedor del logo debe ser relativo */
-#logo-container {
-    position: relative;
-}
-
-/* Botón posicionado justo debajo del logo */
-.boton-box {
-    position: absolute;
-    left: 50%;               /* centrado horizontal */
-    transform: translateX(-50%);
-    bottom: 10px;            /* ajusta para acercar más al logo */
-}
-
-/* Botón estilo */
-.announcement-button {
-    display: inline-block;
-    padding: 16px 30px; /* Aún más ancho */
-    min-width: 250px; /* Botón más estirado */
-    background-color: #7a04db;
-    text-align: center;
-    color: #fff;
-    font-size: 17px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: transform 0.2s ease;
-}
-
-/* Hover */
-.announcement-button:hover {
-    transform: translateY(-3px);
-}
-
 
 /* -------------------------------------- */
-/* DESTELLOS DETRÁS DE LA IMAGEN         */
+/* CONTENEDOR PRINCIPAL                   */
+/* -------------------------------------- */
+#logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* -------------------------------------- */
+/* CONTENEDOR DEL LOGO CON ANIMACIÓN      */
+/* -------------------------------------- */
+.logo-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.logo-image {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+    position: relative;
+    z-index: 2;
+}
+
+/* -------------------------------------- */
+/* DESTELLOS                              */
 /* -------------------------------------- */
 .sparkle {
     position: absolute;
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 215, 0, 0.8) 30%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     animation: sparkleAnimation 3s infinite ease-in-out;
 }
 
@@ -163,36 +165,86 @@ html {
 }
 
 /* -------------------------------------- */
-/* CONTENEDOR DEL LOGO                    */
+/* TEXTO CTA                              */
 /* -------------------------------------- */
-.logo-image-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cta-text {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    margin: -80px 0 10px 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
 }
 
-.logo-image {
-    max-width: 80%;
-    height: auto;
-    position: relative;
-    z-index: 1;
-    width: 400px;  /* Tamaño fijo en píxeles */
-    height: auto;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+/* -------------------------------------- */
+/* BOTÓN                                  */
+/* -------------------------------------- */
+.boton-box {
+    margin: 0;
+}
+
+.announcement-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #8B00FF 0%, #8B00FF 100%);
+    color: white;
+    padding: 16px 60px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px #8B00FF;
+    animation: buttonPulse 2s infinite;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    min-width: 280px;
+    text-align: center;
+}
+
+.button-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+    animation: badgeBlink 1.5s infinite;
+}
+
+.announcement-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 25px #8B00FF;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes badgeBlink {
+    0%, 100% { 
+        opacity: 1;
+    }
+    50% { 
+        opacity: 0.4;
+    }
 }
 
 
 /* -------------------------------------- */
-/* NOTIFICACIONES LIVE                    */
+/* NOTIFICACIONES                         */
 /* -------------------------------------- */
 #notification-container {
     position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2500;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -200,47 +252,23 @@ html {
     width: 100%;
     max-width: 420px;
     padding: 0 15px;
-    box-sizing: border-box;
 }
 
 .notification {
     background: linear-gradient(135deg, rgb(20, 20, 20) 0%, rgb(40, 40, 40) 100%);
-    color: #7a04db;
-    border-left: 5px solid #7a04db;
+    color: #FFD700;
+    border-left: 5px solid #FFD700;
     border-radius: 8px;
     padding: 16px 20px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.2);
     width: 100%;
     max-width: 380px;
-    box-sizing: border-box;
     display: flex;
     align-items: center;
     gap: 15px;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.5s ease;
     transform: translateY(-50px) scale(0.9);
-    position: relative;
-    overflow: hidden;
-}
-
-.notification::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 215, 0, 0.1),
-        transparent
-    );
-    transition: left 0.5s;
-}
-
-.notification.show::after {
-    left: 100%;
 }
 
 .notification.show {
@@ -251,17 +279,6 @@ html {
 .notification-icon {
     font-size: 32px;
     flex-shrink: 0;
-    animation: pulse 2s infinite;
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
 }
 
 .notification-content {
@@ -270,12 +287,11 @@ html {
 
 .notification-title {
     font-weight: bold;
-    color: #7a04db;
+    color: #FFD700;
     margin-bottom: 6px;
     font-size: 0.95em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
 .notification-text {
@@ -291,9 +307,8 @@ html {
 
 .notification-amount {
     font-weight: bold;
-    color: #7a04db;
+    color: #FFD700;
     font-size: 1.15em;
-    text-shadow: 0 0 8px rgba(37, 20, 112, 0.4);
 }
 
 .notification-game {
@@ -305,70 +320,64 @@ html {
 /* FOOTER                                 */
 /* -------------------------------------- */
 .footer-text {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 100%;
     background: transparent;
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     padding: 12px 20px;
     font-size: 12px;
-    z-index: 1;
-    backdrop-filter: none;
-    border-top: none;
+    z-index: 100;
 }
 
 /* -------------------------------------- */
-/* RESPONSIVE - TABLETS                   */
+/* RESPONSIVE                             */
 /* -------------------------------------- */
 @media (max-width: 768px) {
-   
-
-
-
-    .notification {
-        max-width: 100%;
-        padding: 14px 16px;
+    .logo-image-container {
+        max-width: 380px;
     }
 
-    .notification-icon {
-        font-size: 28px;
+    .cta-text {
+        font-size: 16px;
+        margin: -80px 0 10px 0;
+        text-align: center;
     }
 
     .announcement-button {
-        padding: 12px 30px;
-        font-size: 14px;
+        padding: 14px 50px;
+        font-size: 15px;
+        min-width: 260px;
     }
 }
 
-/* -------------------------------------- */
-/* RESPONSIVE - MÓVILES                   */
-/* -------------------------------------- */
 @media (max-width: 480px) {
-    #notification-container {
-        top: 12px;
-        padding: 0 12px;
+    .logo-image-container {
+        max-width: 320px;
     }
 
-
-
-    .notification {
-        padding: 12px 14px;
-        gap: 12px;
+    .cta-text {
+        font-size: 15px;
+          margin: -80px 0 10px 0;
+          text-align: center;
     }
 
-    .notification-icon {
-        font-size: 26px;
+    .announcement-button {
+        padding: 13px 40px;
+        font-size: 14px;
+        min-width: 240px;
     }
 
-    .notification-title {
-        font-size: 0.85em;
+    .button-dot {
+        width: 8px;
+        height: 8px;
     }
 
-    .notification-text {
-        font-size: 0.85em;
+    .badge-247 {
+        padding: 9px 16px;
+        font-size: 12px;
     }
 
     .footer-text {
@@ -376,42 +385,29 @@ html {
         padding: 10px 15px;
     }
 
-    .announcement-button {
-        padding: 10px 25px;
-        font-size: 13px;
+    .notification {
+        padding: 12px 14px;
+        font-size: 14px;
     }
 }
 
-/* -------------------------------------- */
-/* RESPONSIVE - MÓVILES PEQUEÑOS          */
-/* -------------------------------------- */
 @media (max-width: 360px) {
-    .notification-icon {
-        font-size: 24px;
+    .logo-image-container {
+        max-width: 280px;
+    }
+
+    .cta-text {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .announcement-button {
+        padding: 12px 35px;
+        font-size: 13px;
+        min-width: 220px;
     }
 
     .footer-text {
         font-size: 9px;
-        padding: 8px 10px;
     }
 }
-
-/* -------------------------------------- */
-/* LANDSCAPE EN MÓVILES                   */
-/* -------------------------------------- */
-@media (max-height: 500px) and (orientation: landscape) {
-    
-
-    #notification-container {
-        top: 8px;
-    }
-
-    .notification {
-        padding: 10px 12px;
-    }
-
-    .notification-icon {
-        font-size: 22px;
-    }
-}
-
