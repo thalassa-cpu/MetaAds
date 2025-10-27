@@ -7,6 +7,10 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Capa de difuminado */
@@ -34,10 +38,6 @@ body::after {
     z-index: -1;
 }
 
-html {
-    height: 100%;
-}
-
 * {
     user-select: none;
     -webkit-user-select: none;
@@ -45,160 +45,68 @@ html {
 }
 
 /* -------------------------------------- */
-/* CONTENEDOR PRINCIPAL                   */
+/* CONTENEDOR PRINCIPAL - SÚPER COMPACTO  */
 /* -------------------------------------- */
 #logo-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.logo-wrapper {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0;
-}
-
-/* -------------------------------------- */
-/* CONTENEDOR DEL LOGO CON ANIMACIÓN      */
-/* -------------------------------------- */
-.logo-image-container {
-    position: relative;
-    width: 100%;
-    max-width: 450px;
-    display: flex;
     justify-content: center;
     align-items: center;
-    animation: float 3s ease-in-out infinite;
+    gap: 0;  /* Sin espacio entre elementos */
+    padding: 10px;
+    z-index: 1;
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
+/* -------------------------------------- */
+/* IMAGEN DEL BONO                        */
+/* -------------------------------------- */
 .logo-image {
     width: 100%;
-    max-width: 450px;
+    max-width: 550px;
     height: auto;
     filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
     position: relative;
     z-index: 2;
+    margin-bottom: -30px;  /* Superposición negativa para acercar al texto */
 }
 
 /* -------------------------------------- */
-/* DESTELLOS                              */
-/* -------------------------------------- */
-.sparkle {
-    position: absolute;
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 215, 0, 0.8) 30%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    animation: sparkleAnimation 3s infinite ease-in-out;
-}
-
-.sparkle-1 {
-    width: 15px;
-    height: 15px;
-    top: 10%;
-    left: 15%;
-    animation-delay: 0s;
-}
-
-.sparkle-2 {
-    width: 20px;
-    height: 20px;
-    top: 25%;
-    right: 10%;
-    animation-delay: 0.5s;
-}
-
-.sparkle-3 {
-    width: 12px;
-    height: 12px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 1s;
-}
-
-.sparkle-4 {
-    width: 18px;
-    height: 18px;
-    bottom: 15%;
-    right: 15%;
-    animation-delay: 1.5s;
-}
-
-.sparkle-5 {
-    width: 14px;
-    height: 14px;
-    top: 50%;
-    left: 5%;
-    animation-delay: 2s;
-}
-
-.sparkle-6 {
-    width: 16px;
-    height: 16px;
-    top: 50%;
-    right: 5%;
-    animation-delay: 2.5s;
-}
-
-@keyframes sparkleAnimation {
-    0%, 100% {
-        opacity: 0;
-        transform: scale(0) rotate(0deg);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1) rotate(180deg);
-    }
-}
-
-/* -------------------------------------- */
-/* TEXTO CTA                              */
+/* TEXTO CTA - MUY PEGADO                 */
 /* -------------------------------------- */
 .cta-text {
     color: #fff;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     text-align: center;
-    margin: -80px 0 10px 0;
+    margin: 0 0 15px 0;  /* Solo 15px de margen inferior */
+    padding: 0;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
     letter-spacing: 0.5px;
 }
 
 /* -------------------------------------- */
-/* BOTÓN                                  */
+/* BOTÓN - SIN MÁRGENES                   */
 /* -------------------------------------- */
 .boton-box {
     margin: 0;
+    padding: 0;
 }
 
 .announcement-button {
     display: inline-block;
     background: linear-gradient(135deg, #8B00FF 0%, #8B00FF 100%);
     color: white;
-    padding: 16px 60px;
+    padding: 18px 70px;
     border-radius: 30px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
     box-shadow: 0 4px 15px #8B00FF;
     animation: buttonPulse 2s infinite;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    min-width: 280px;
+    min-width: 300px;
     text-align: center;
 }
 
@@ -235,6 +143,17 @@ html {
     }
 }
 
+/* -------------------------------------- */
+/* TEXTO FOOTER (+18)                     */
+/* -------------------------------------- */
+body > p {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    z-index: 1;
+    margin-top: 30px;
+}
 
 /* -------------------------------------- */
 /* NOTIFICACIONES                         */
@@ -317,59 +236,58 @@ html {
 }
 
 /* -------------------------------------- */
-/* FOOTER                                 */
+/* RESPONSIVE - TABLETS                    */
 /* -------------------------------------- */
-.footer-text {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    text-align: center;
-    padding: 12px 20px;
-    font-size: 12px;
-    z-index: 100;
+@media (max-width: 768px) {
+    #logo-container {
+        gap: 0;
+        padding: 8px;
+    }
+
+    .logo-image {
+        max-width: 450px;
+        margin-bottom: -25px;  /* Menos superposición en tablets */
+    }
+
+    .cta-text {
+        font-size: 17px;
+        margin: 0 0 12px 0;  /* Margen inferior reducido */
+    }
+
+    .announcement-button {
+        padding: 16px 60px;
+        font-size: 17px;
+        min-width: 280px;
+    }
+
+    body > p {
+        margin-top: 25px;
+    }
 }
 
 /* -------------------------------------- */
-/* RESPONSIVE                             */
+/* RESPONSIVE - MÓVILES                    */
 /* -------------------------------------- */
-@media (max-width: 768px) {
-    .logo-image-container {
+@media (max-width: 480px) {
+    #logo-container {
+        gap: 0;
+        padding: 5px;
+    }
+
+    .logo-image {
         max-width: 380px;
+        margin-bottom: -20px;  /* Menos superposición en móviles */
     }
 
     .cta-text {
         font-size: 16px;
-        margin: -80px 0 10px 0;
-        text-align: center;
+        margin: 0 0 10px 0;  /* Solo 10px de margen inferior */
     }
 
     .announcement-button {
-        padding: 14px 50px;
+        padding: 15px 50px;
         font-size: 15px;
         min-width: 260px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* SEPARACIÓN DE ELEMENTOS EN MÓVIL */
-    .logo-image-container {
-        max-width: 320px;
-        margin-bottom: 20px; /* Separación después de la imagen del bono */
-    }
-
-    .cta-text {
-        font-size: 15px;
-        margin: 0 0 25px 0; /* Separación después del texto */
-        text-align: center;
-    }
-
-    .announcement-button {
-        padding: 13px 40px;
-        font-size: 14px;
-        min-width: 240px;
     }
 
     .button-dot {
@@ -377,17 +295,10 @@ html {
         height: 8px;
     }
 
-    .badge-247 {
-        padding: 9px 16px;
-        font-size: 12px;
-    }
-
-    /* FOOTER NO FIJO EN MÓVIL */
-    .footer-text {
-        position: relative; /* Cambiado de fixed a relative solo en móvil */
+    body > p {
         font-size: 10px;
-        padding: 10px 15px;
-        margin-top: 30px; /* Separación del contenido */
+        padding: 15px;
+        margin-top: 20px;
     }
 
     .notification {
@@ -396,26 +307,46 @@ html {
     }
 }
 
+/* -------------------------------------- */
+/* RESPONSIVE - MÓVILES PEQUEÑOS           */
+/* -------------------------------------- */
 @media (max-width: 360px) {
-    .logo-image-container {
-        max-width: 280px;
-        margin-bottom: 25px;
+    #logo-container {
+        gap: 0;
+        padding: 3px;
+    }
+
+    .logo-image {
+        max-width: 320px;
+        margin-bottom: -15px;  /* Menos superposición en móviles pequeños */
     }
 
     .cta-text {
         font-size: 15px;
-        text-align: center;
-        margin: 0 0 20px 0;
+        margin: 0 0 8px 0;  /* Solo 8px de margen inferior */
     }
 
     .announcement-button {
-        padding: 12px 35px;
-        font-size: 13px;
-        min-width: 220px;
+        padding: 14px 40px;
+        font-size: 14px;
+        min-width: 240px;
     }
 
-    .footer-text {
+    body > p {
         font-size: 9px;
+        margin-top: 15px;
     }
 }
 
+/* -------------------------------------- */
+/* AJUSTE PARA PANTALLAS MUY ALTAS        */
+/* -------------------------------------- */
+@media (min-height: 900px) {
+    .logo-image {
+        margin-bottom: -35px;  /* Más superposición en pantallas altas */
+    }
+    
+    .cta-text {
+        margin: 0 0 18px 0;
+    }
+}
