@@ -92,6 +92,18 @@ html, body {
     z-index: 2;
     margin-bottom: -70px;
 }
+/* -------------------------------------- */
+/* IMAGEN DE LA MOMIA                     */
+/* -------------------------------------- */
+.momia-image {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    position: relative;
+    z-index: 4;
+    margin-bottom: -30px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
 
 /* -------------------------------------- */
 /* TEXTO CTA - MUY PEGADO                 */
@@ -291,6 +303,11 @@ body > p {
     body > p {
         margin-top: 25px;
     }
+        .momia-image {
+        max-width: 200px;
+        margin-bottom: -25px;
+    }
+
 }
 
 /* -------------------------------------- */
@@ -357,6 +374,10 @@ body > p {
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
     line-height: 1;
 }
+ .momia-image {
+        max-width: 180px;
+        margin-bottom: -20px;
+    }
 }
 
 /* -------------------------------------- */
@@ -407,6 +428,10 @@ body > p {
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
     line-height: 1;
 }
+.momia-image {
+        max-width: 150px;
+        margin-bottom: -15px;
+    }
 }
 
 /* -------------------------------------- */
