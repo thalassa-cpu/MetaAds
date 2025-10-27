@@ -305,7 +305,15 @@ body > p {
         height: 140%;
         transform: scale(1.2);  /* Mayor escala para móviles */
     }
-    
+    .notification {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .notification-icon {
+        font-size: 28px;  /* ← AGREGA ESTA REGLA */
+    }
+
     body {
         min-height: 100vh;
         min-height: -webkit-fill-available;  /* Para Safari iOS */
@@ -391,6 +399,9 @@ body > p {
         font-size: 9px;
         margin-top: 15px;
     }
+    .notification-icon {
+        font-size: 24px;  /* ← AGREGA ESTA REGLA */
+    }
 }
 
 /* -------------------------------------- */
@@ -406,4 +417,3 @@ body > p {
         z-index: 3;
     }
 }
-
