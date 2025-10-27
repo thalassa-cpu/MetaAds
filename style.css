@@ -21,7 +21,7 @@ body::before {
     bottom: -10%;
     width: 120%;  /* Hacemos la capa más grande */
     height: 120%;
-    background: url('img/messi.png') no-repeat center center;
+    background: url('img/messi.jpeg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     filter: blur(8px);
@@ -87,10 +87,10 @@ html, body {
     width: 100%;
     max-width: 550px;
     height: auto;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 20px rgba(217, 231, 11, 0.6));
     position: relative;
     z-index: 2;
-    margin-bottom: -30px;  /* Superposición negativa para acercar al texto */
+    margin-bottom: -70px;  /* SÚPER PEGADO - aumentado de -50px a -70px */
 }
 
 /* -------------------------------------- */
@@ -101,10 +101,12 @@ html, body {
     font-size: 18px;
     font-weight: 600;
     text-align: center;
-    margin: 0 0 15px 0;  /* Solo 15px de margen inferior */
+    margin: 0 0 5px 0;  /* Reducido a solo 5px de margen inferior */
     padding: 0;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
     letter-spacing: 0.5px;
+    position: relative;  /* Para asegurar que esté encima de la imagen */
+    z-index: 3;
 }
 
 /* -------------------------------------- */
@@ -117,14 +119,14 @@ html, body {
 
 .announcement-button {
     display: inline-block;
-    background: linear-gradient(135deg, #8B00FF 0%, #8B00FF 100%);
+    background: linear-gradient(135deg, #7e0ee7 0%, #7e0ee7 100%);
     color: white;
     padding: 18px 70px;
     border-radius: 30px;
     font-weight: bold;
     font-size: 18px;
     text-decoration: none;
-    box-shadow: 0 4px 15px #8B00FF;
+    box-shadow: 0 4px 15px #7e0ee7;
     animation: buttonPulse 2s infinite;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -145,7 +147,7 @@ html, body {
 
 .announcement-button:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 25px #8B00FF;
+    box-shadow: 0 6px 25px #7e0ee7;
 }
 
 @keyframes buttonPulse {
@@ -198,11 +200,11 @@ body > p {
 
 .notification {
     background: linear-gradient(135deg, rgb(20, 20, 20) 0%, rgb(40, 40, 40) 100%);
-    color: #FFD700;
-    border-left: 5px solid #FFD700;
+    color: #7e0ee7;
+    border-left: 5px solid #7e0ee7;
     border-radius: 8px;
     padding: 16px 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(63, 23, 209, 0.2);
     width: 100%;
     max-width: 380px;
     display: flex;
@@ -229,7 +231,7 @@ body > p {
 
 .notification-title {
     font-weight: bold;
-    color: #FFD700;
+    color: #7e0ee7;
     margin-bottom: 6px;
     font-size: 0.95em;
     text-transform: uppercase;
@@ -249,7 +251,7 @@ body > p {
 
 .notification-amount {
     font-weight: bold;
-    color: #FFD700;
+    color: #7e0ee7;
     font-size: 1.15em;
 }
 
@@ -269,12 +271,13 @@ body > p {
 
     .logo-image {
         max-width: 450px;
-        margin-bottom: -25px;  /* Menos superposición en tablets */
+        margin-bottom: -65px;  /* SÚPER PEGADO en tablets - aumentado de -45px */
     }
 
     .cta-text {
         font-size: 17px;
-        margin: 0 0 12px 0;  /* Margen inferior reducido */
+        margin: 0 0 4px 0;  /* Reducido a solo 4px */
+        z-index: 3;
     }
 
     .announcement-button {
@@ -315,12 +318,13 @@ body > p {
 
     .logo-image {
         max-width: 380px;
-        margin-bottom: -20px;  /* Menos superposición en móviles */
+        margin-bottom: -60px;  /* SÚPER PEGADO en móviles - aumentado de -40px */
     }
 
     .cta-text {
         font-size: 16px;
-        margin: 0 0 10px 0;  /* Solo 10px de margen inferior */
+        margin: 0 0 3px 0;  /* Solo 3px de margen inferior */
+        z-index: 3;
     }
 
     .announcement-button {
@@ -368,12 +372,13 @@ body > p {
 
     .logo-image {
         max-width: 320px;
-        margin-bottom: -15px;  /* Menos superposición en móviles pequeños */
+        margin-bottom: -55px;  /* SÚPER PEGADO en móviles pequeños - aumentado de -35px */
     }
 
     .cta-text {
         font-size: 15px;
-        margin: 0 0 8px 0;  /* Solo 8px de margen inferior */
+        margin: 0 0 2px 0;  /* Solo 2px de margen inferior */
+        z-index: 3;
     }
 
     .announcement-button {
@@ -393,10 +398,12 @@ body > p {
 /* -------------------------------------- */
 @media (min-height: 900px) {
     .logo-image {
-        margin-bottom: -35px;  /* Más superposición en pantallas altas */
+        margin-bottom: -75px;  /* SÚPER PEGADO en pantallas altas - aumentado de -55px */
     }
     
     .cta-text {
-        margin: 0 0 18px 0;
+        margin: 0 0 5px 0;  /* Solo 5px de margen */
+        z-index: 3;
     }
 }
+
