@@ -357,7 +357,7 @@ html {
     /* SEPARACIÓN DE ELEMENTOS EN MÓVIL */
     .logo-image-container {
         max-width: 320px;
-        margin-bottom: 30px; /* Separación después de la imagen del bono */
+        margin-bottom: 20px; /* Separación después de la imagen del bono */
     }
 
     .cta-text {
@@ -418,3 +418,4 @@ html {
         font-size: 9px;
     }
 }
+
