@@ -2,8 +2,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('img/messi.png') no-repeat center center fixed; 
-    background-size: cover;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -13,35 +11,57 @@ body {
     align-items: center;
 }
 
-/* Capa de difuminado */
+/* Capa de fondo con imagen blur - MEJORADA PARA MÓVILES */
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit;
+    top: -10%;  /* Extendemos más allá de los bordes */
+    left: -10%;
+    right: -10%;
+    bottom: -10%;
+    width: 120%;  /* Hacemos la capa más grande */
+    height: 120%;
+    background: url('img/messi.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
     filter: blur(8px);
+    transform: scale(1.1);  /* Escalamos para evitar bordes blancos */
     z-index: -2;
+    will-change: transform;  /* Optimización de rendimiento */
 }
 
-/* Capa oscura */
+/* Capa oscura - TAMBIÉN MEJORADA */
 body::after {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
     z-index: -1;
+    pointer-events: none;  /* Evita problemas de interacción */
 }
 
 * {
     user-select: none;
     -webkit-user-select: none;
     box-sizing: border-box;
+}
+
+/* Contenedor HTML para prevenir overflow en móviles */
+html {
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+}
+
+/* Prevenir scroll horizontal en móviles */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* -------------------------------------- */
@@ -55,6 +75,9 @@ body::after {
     gap: 0;  /* Sin espacio entre elementos */
     padding: 10px;
     z-index: 1;
+    position: relative;  /* Aseguramos posicionamiento correcto */
+    width: 100%;
+    max-width: 600px;  /* Limitamos el ancho máximo */
 }
 
 /* -------------------------------------- */
@@ -269,6 +292,22 @@ body > p {
 /* RESPONSIVE - MÓVILES                    */
 /* -------------------------------------- */
 @media (max-width: 480px) {
+    /* Ajuste especial para el fondo en móviles */
+    body::before {
+        top: -20%;  /* Más extensión en móviles */
+        left: -20%;
+        right: -20%;
+        bottom: -20%;
+        width: 140%;
+        height: 140%;
+        transform: scale(1.2);  /* Mayor escala para móviles */
+    }
+    
+    body {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;  /* Para Safari iOS */
+    }
+    
     #logo-container {
         gap: 0;
         padding: 5px;
@@ -311,6 +350,17 @@ body > p {
 /* RESPONSIVE - MÓVILES PEQUEÑOS           */
 /* -------------------------------------- */
 @media (max-width: 360px) {
+    /* Ajuste del fondo para móviles pequeños */
+    body::before {
+        top: -25%;
+        left: -25%;
+        right: -25%;
+        bottom: -25%;
+        width: 150%;
+        height: 150%;
+        transform: scale(1.3);
+    }
+    
     #logo-container {
         gap: 0;
         padding: 3px;
