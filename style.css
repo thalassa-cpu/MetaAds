@@ -223,6 +223,8 @@ body > p {
 .notification-icon {
     font-size: 32px;
     flex-shrink: 0;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    line-height: 1;
 }
 
 .notification-content {
@@ -350,8 +352,11 @@ body > p {
     }
 
     .notification-icon {
-        font-size: 28px;
-    }
+    font-size: 32px;
+    flex-shrink: 0;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    line-height: 1;
+}
 }
 
 /* -------------------------------------- */
@@ -396,9 +401,12 @@ body > p {
     }
 
     /* NOTIFICACIONES EN MÓVILES PEQUEÑOS */
-    .notification-icon {
-        font-size: 24px;
-    }
+   .notification-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    line-height: 1;
+}
 }
 
 /* -------------------------------------- */
