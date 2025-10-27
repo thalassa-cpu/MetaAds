@@ -53,8 +53,9 @@ function showNotification() {
     const notification = document.createElement('div');
     notification.classList.add('notification');
     
-    // Contenido del cartel con iconos y mejor jerarquía
+    // Contenido del cartel con iconos y mejor jerarquía - AÑADIDO EMOJI DE SLOT
     notification.innerHTML = `
+        <div class="notification-icon">🎰</div>
         <div class="notification-content">
             <div class="notification-title">¡GANANCIA EN VIVO!</div>
             <div class="notification-text">
@@ -109,11 +110,14 @@ function startLiveFeed() {
 // Iniciar cuando carga la página
 document.addEventListener('DOMContentLoaded', startLiveFeed);
 
-document.getElementById('badge247Link').addEventListener('click', function(e) {
-    e.preventDefault();
-    fbq('track', 'Contact');
-    
-    setTimeout(function() {
-        window.location.href = 'https://wa.me/5493585611428?text=Hola%20quiero%20acceso%20a%20Juga%20Premium';
-    }, 100);
-});
+// Manejo del evento del link del badge (si existe)
+if (document.getElementById('badge247Link')) {
+    document.getElementById('badge247Link').addEventListener('click', function(e) {
+        e.preventDefault();
+        fbq('track', 'Contact');
+        
+        setTimeout(function() {
+            window.location.href = 'https://wa.me/5493585611428?text=Hola%20quiero%20acceso%20a%20Juga%20Premium';
+        }, 100);
+    });
+}
