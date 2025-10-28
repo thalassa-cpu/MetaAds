@@ -101,7 +101,7 @@ html, body {
     height: auto;
     position: relative;
     z-index: 4;
-    margin-bottom: -30px;
+    margin-bottom: -90px;
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
 }
 
@@ -274,42 +274,65 @@ body > p {
     font-weight: 500;
 }
 
-/* -------------------------------------- */
-/* RESPONSIVE - TABLETS                    */
-/* -------------------------------------- */
 @media (max-width: 768px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        padding: 20px 10px;
+    }
+
     #logo-container {
         gap: 0;
         padding: 8px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
     }
 
     .logo-image {
         max-width: 450px;
         margin-bottom: -65px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .momia-image {
+        max-width: 200px;
+        margin-bottom: -25px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     .cta-text {
         font-size: 17px;
         margin: 0 0 4px 0;
         z-index: 3;
+        text-align: center;
+        width: 100%;
+    }
+
+    .boton-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .announcement-button {
         padding: 16px 60px;
         font-size: 17px;
         min-width: 280px;
+        margin: 0 auto;
     }
 
     body > p {
         margin-top: 25px;
+        text-align: center;
+        width: 100%;
     }
-        .momia-image {
-        max-width: 200px;
-        margin-bottom: -25px;
     }
-
-}
-
 /* -------------------------------------- */
 /* RESPONSIVE - MÓVILES                    */
 /* -------------------------------------- */
@@ -327,28 +350,55 @@ body > p {
     body {
         min-height: 100vh;
         min-height: -webkit-fill-available;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 10px;
     }
     
     #logo-container {
         gap: 0;
         padding: 5px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
     }
 
     .logo-image {
         max-width: 380px;
         margin-bottom: -60px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .momia-image {
+        max-width: 180px;
+        margin-bottom: -40px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     .cta-text {
         font-size: 16px;
         margin: 0 0 3px 0;
         z-index: 3;
+        text-align: center;
+        width: 100%;
+    }
+
+    .boton-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .announcement-button {
         padding: 15px 50px;
         font-size: 15px;
         min-width: 260px;
+        margin: 0 auto;
     }
 
     .button-dot {
@@ -360,26 +410,22 @@ body > p {
         font-size: 10px;
         padding: 15px;
         margin-top: 20px;
+        text-align: center;
+        width: 100%;
     }
 
-    /* NOTIFICACIONES EN MÓVILES */
     .notification {
         padding: 12px 14px;
         font-size: 14px;
     }
 
     .notification-icon {
-    font-size: 32px;
-    flex-shrink: 0;
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-    line-height: 1;
-}
- .momia-image {
-        max-width: 180px;
-        margin-bottom: -20px;
+        font-size: 32px;
+        flex-shrink: 0;
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+        line-height: 1;
     }
 }
-
 /* -------------------------------------- */
 /* RESPONSIVE - MÓVILES PEQUEÑOS           */
 /* -------------------------------------- */
@@ -430,7 +476,7 @@ body > p {
 }
 .momia-image {
         max-width: 150px;
-        margin-bottom: -15px;
+        margin-bottom: -35px;
     }
 }
 
