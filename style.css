@@ -1,0 +1,495 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Capa de fondo con imagen blur - MEJORADA PARA MÓVILES */
+body::before {
+    content: '';
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    right: -10%;
+    bottom: -10%;
+    width: 120%;
+    height: 120%;
+    background: url('img/messi.jpeg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -2;
+    will-change: transform;
+}
+
+/* Capa oscura - TAMBIÉN MEJORADA */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    pointer-events: none;
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    box-sizing: border-box;
+}
+
+/* Contenedor HTML para prevenir overflow en móviles */
+html {
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+}
+
+/* Prevenir scroll horizontal en móviles */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* -------------------------------------- */
+/* CONTENEDOR PRINCIPAL - SÚPER COMPACTO  */
+/* -------------------------------------- */
+#logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 10px;
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* -------------------------------------- */
+/* IMAGEN DEL BONO                        */
+/* -------------------------------------- */
+.logo-image {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(217, 231, 11, 0.6));
+    position: relative;
+    z-index: 2;
+    margin-bottom: -70px;
+}
+/* -------------------------------------- */
+/* IMAGEN DE LA MOMIA                     */
+/* -------------------------------------- */
+.momia-image {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    position: relative;
+    z-index: 4;
+    margin-bottom: -90px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
+
+/* -------------------------------------- */
+/* TEXTO CTA - MUY PEGADO                 */
+/* -------------------------------------- */
+.cta-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 5px 0;
+    padding: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 3;
+}
+
+/* -------------------------------------- */
+/* BOTÓN - SIN MÁRGENES                   */
+/* -------------------------------------- */
+.boton-box {
+    margin: 0;
+    padding: 0;
+}
+
+.announcement-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #7e0ee7 0%, #7e0ee7 100%);
+    color: white;
+    padding: 18px 70px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px #7e0ee7;
+    animation: buttonPulse 2s infinite;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    min-width: 300px;
+    text-align: center;
+}
+
+.button-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+    animation: badgeBlink 1.5s infinite;
+}
+
+.announcement-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 25px #7e0ee7;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes badgeBlink {
+    0%, 100% { 
+        opacity: 1;
+    }
+    50% { 
+        opacity: 0.4;
+    }
+}
+
+/* -------------------------------------- */
+/* TEXTO FOOTER (+18)                     */
+/* -------------------------------------- */
+body > p {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* -------------------------------------- */
+/* NOTIFICACIONES                         */
+/* -------------------------------------- */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    padding: 0 15px;
+}
+
+.notification {
+    background: linear-gradient(135deg, rgb(20, 20, 20) 0%, rgb(40, 40, 40) 100%);
+    color: #7e0ee7;
+    border-left: 5px solid #7e0ee7;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(63, 23, 209, 0.2);
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform: translateY(-50px) scale(0.9);
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.notification-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    line-height: 1;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    color: #7e0ee7;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.notification-text {
+    font-size: 0.9em;
+    color: #e0e0e0;
+    line-height: 1.4;
+}
+
+.notification-name {
+    color: #FFF;
+    font-weight: 600;
+}
+
+.notification-amount {
+    font-weight: bold;
+    color: #7e0ee7;
+    font-size: 1.15em;
+}
+
+.notification-game {
+    color: #FFF;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        padding: 20px 10px;
+    }
+
+    #logo-container {
+        gap: 0;
+        padding: 8px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo-image {
+        max-width: 450px;
+        margin-bottom: -65px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .momia-image {
+        max-width: 200px;
+        margin-bottom: -25px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .cta-text {
+        font-size: 17px;
+        margin: 0 0 4px 0;
+        z-index: 3;
+        text-align: center;
+        width: 100%;
+    }
+
+    .boton-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .announcement-button {
+        padding: 16px 60px;
+        font-size: 17px;
+        min-width: 280px;
+        margin: 0 auto;
+    }
+
+    body > p {
+        margin-top: 25px;
+        text-align: center;
+        width: 100%;
+    }
+    }
+/* -------------------------------------- */
+/* RESPONSIVE - MÓVILES                    */
+/* -------------------------------------- */
+@media (max-width: 480px) {
+    body::before {
+        top: -20%;
+        left: -20%;
+        right: -20%;
+        bottom: -20%;
+        width: 140%;
+        height: 140%;
+        transform: scale(1.2);
+    }
+
+    body {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 10px;
+    }
+    
+    #logo-container {
+        gap: 0;
+        padding: 5px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo-image {
+        max-width: 380px;
+        margin-bottom: -60px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .momia-image {
+        max-width: 180px;
+        margin-bottom: -40px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .cta-text {
+        font-size: 16px;
+        margin: 0 0 3px 0;
+        z-index: 3;
+        text-align: center;
+        width: 100%;
+    }
+
+    .boton-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .announcement-button {
+        padding: 15px 50px;
+        font-size: 15px;
+        min-width: 260px;
+        margin: 0 auto;
+    }
+
+    .button-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    body > p {
+        font-size: 10px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .notification {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .notification-icon {
+        font-size: 32px;
+        flex-shrink: 0;
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+        line-height: 1;
+    }
+}
+/* -------------------------------------- */
+/* RESPONSIVE - MÓVILES PEQUEÑOS           */
+/* -------------------------------------- */
+@media (max-width: 360px) {
+    body::before {
+        top: -25%;
+        left: -25%;
+        right: -25%;
+        bottom: -25%;
+        width: 150%;
+        height: 150%;
+        transform: scale(1.3);
+    }
+    
+    #logo-container {
+        gap: 0;
+        padding: 3px;
+    }
+
+    .logo-image {
+        max-width: 320px;
+        margin-bottom: -55px;
+    }
+
+    .cta-text {
+        font-size: 15px;
+        margin: 0 0 2px 0;
+        z-index: 3;
+    }
+
+    .announcement-button {
+        padding: 14px 40px;
+        font-size: 14px;
+        min-width: 240px;
+    }
+
+    body > p {
+        font-size: 9px;
+        margin-top: 15px;
+    }
+
+    /* NOTIFICACIONES EN MÓVILES PEQUEÑOS */
+   .notification-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    line-height: 1;
+}
+.momia-image {
+        max-width: 150px;
+        margin-bottom: -35px;
+    }
+}
+
+/* -------------------------------------- */
+/* AJUSTE PARA PANTALLAS MUY ALTAS        */
+/* -------------------------------------- */
+@media (min-height: 900px) {
+    .logo-image {
+        margin-bottom: -75px;
+    }
+    
+    .cta-text {
+        margin: 0 0 5px 0;
+        z-index: 3;
+    }
+}
